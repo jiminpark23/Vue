@@ -29,15 +29,8 @@
     </div>
     
     <script>
-        const app = Vue.createApp({
-            data(){
-                return {
-
-                }
-            },
-        })
-        // 전역 컴포넌트 //
-        app.component('product-list', {
+        // 지역 컴포넌트 //
+        const productList = {
             template: `
                 <li>
                     <img src="images/mango.jpg"/>
@@ -46,7 +39,26 @@
                     <b>2,000원</b>
                 </li>
             `
-        });
+        }
+        const app = Vue.createApp({
+            data(){
+                return {
+
+                }
+            },
+            components: {'product-list': productList}   // 등록
+        })
+        // 전역 컴포넌트 //
+        //app.component('product-list', {
+        //    template: `
+        //        <li>
+        //            <img src="images/mango.jpg"/>
+        //            <strong>천연 오가닉 사과칩</strong>
+        //            <span>깨끗한 재료를 엄선하여 자연을 그대로 담았습니다.</span>
+        //            <b>2,000원</b>
+        //        </li>
+        //    `
+        //});
         app.mount('#app')
     </script>
 </body>
