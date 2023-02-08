@@ -22,9 +22,7 @@
     <div id="app">
         <h1>Sales Product</h1>
         <ul class="list">
-            <product-list></product-list>
-            <product-list></product-list>
-            <product-list></product-list>
+            <product-list></product-list>   <!-- 옷장. 여길 통해서 데이터를 주고받기 가능 -->
         </ul>
     </div>
     
@@ -32,18 +30,41 @@
         // 지역 컴포넌트 //
         const productList = {
             template: `
-                <li>
+                <li v-for="item in chips" :key="item.title">
                     <img src="images/mango.jpg"/>
                     <strong>천연 오가닉 사과칩</strong>
                     <span>깨끗한 재료를 엄선하여 자연을 그대로 담았습니다.</span>
                     <b>2,000원</b>
                 </li>
-            `
+            `,
+            data() {
+                return {
+                    chips:[{
+                        img:`images/mango.jpg`,
+                        title:`자연그대로 망고칩`,
+                        desc:`단맛이 그대로 살아있는 망고칩입니다.`,
+                        price:`2,500원`
+                    },
+                    {
+                        img:`images/apple.jpg`,
+                        title:`천연 오가닉 사과칩`,
+                        desc:`깨끗한 재료를 엄선하여 자연을 그대로 담았습니다.`,
+                        price:`2,000원`
+                    },
+                    {
+                        img:`images/jujube.jpg`,
+                        title:`아이깨끗 대추칩`,
+                        desc:`새콤함이 살아있는 반건조 대추그대로.`,
+                        price:`3,000원`
+                    }
+                ]
+                }
+            }
         }
         const app = Vue.createApp({
             data(){
                 return {
-
+                    
                 }
             },
             components: {'product-list': productList}   // 등록. 키값과 변수명이 같을 땐 생략 가능 -> components: { productList } 이렇게도 쓸 수 있음
